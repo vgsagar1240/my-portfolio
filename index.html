@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<title>Gnana Sagar Varada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F2F4F1; --surface:#FFFFFF; --ink:#13201D; --muted:#56655F; --line:#D4DBD6;
+  --accent:#2447C9; --accent-soft:#E2E8FB; --bar:#B9C6F2; --chip:#E8ECE9;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1412; --surface:#151D1A; --ink:#E5ECE8; --muted:#93A39C; --line:#26322E;
+    --accent:#90A7FF; --accent-soft:#1C2645; --bar:#33427A; --chip:#1D2723;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1412; --surface:#151D1A; --ink:#E5ECE8; --muted:#93A39C; --line:#26322E;
+  --accent:#90A7FF; --accent-soft:#1C2645; --bar:#33427A; --chip:#1D2723;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);margin:0;padding-inline:20px;}
+.wrap{max-width:1080px;margin:0 auto;padding-block:56px 72px;display:flex;flex-direction:column;gap:88px}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.02em}
+.label{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--mono)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:48px;align-items:end}
+.hero h1{font-size:clamp(46px,8vw,96px);line-height:.92;font-weight:800}
+.hero h1 span{display:block;color:var(--accent)}
+.hero .role{font:500 clamp(18px,2.2vw,22px)/1.4 var(--body);margin:24px 0 0;max-width:30ch}
+.hero .intro{color:var(--muted);max-width:58ch;margin:16px 0 0}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;font-weight:500;font-size:15px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn:hover{border-color:var(--accent)}
+
+/* ship log */
+.log{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 22px 18px}
+.log header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:16px}
+.log .total{font:700 30px/1 var(--display)}
+.rows{display:flex;flex-direction:column;gap:9px}
+.row{display:grid;grid-template-columns:120px 1fr 38px;gap:10px;align-items:center;font:13px/1.2 var(--mono)}
+.row .track{height:10px;background:var(--chip);border-radius:3px;overflow:hidden}
+.row .fill{height:100%;background:var(--accent);border-radius:3px}
+.row .n{text-align:right;font-variant-numeric:tabular-nums}
+.log footer{margin-top:14px;font-size:12px;color:var(--muted)}
+
+/* sections */
+section > .head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid var(--ink);padding-bottom:12px;margin-bottom:32px;flex-wrap:wrap}
+section > .head h2{font-size:clamp(28px,4vw,40px);font-weight:700}
+
+/* featured */
+.feature{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:36px}
+.feature h3{font-size:clamp(26px,3.4vw,36px);font-weight:700;line-height:1.05}
+.feature p{margin:14px 0 0;max-width:60ch}
+.client{font:500 13px/1 var(--mono);color:var(--accent);margin-bottom:12px;display:block}
+.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;align-self:start}
+.metric{background:var(--surface);padding:18px}
+.metric b{display:block;font:700 34px/1 var(--display);font-variant-numeric:tabular-nums}
+.metric span{font-size:13px;color:var(--muted)}
+.features{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;padding:0;list-style:none}
+.features li{font-size:13px;padding:4px 10px;border-radius:6px;background:var(--accent-soft);color:var(--ink)}
+
+/* project list */
+.projects{display:flex;flex-direction:column}
+.proj{display:grid;grid-template-columns:220px 1fr 240px;gap:32px;padding:30px 0;border-bottom:1px solid var(--line)}
+.proj:first-child{padding-top:8px}
+.proj h3{font-size:24px;font-weight:700;line-height:1.1}
+.proj .when{font:13px/1.4 var(--mono);color:var(--muted);margin-top:8px}
+.proj p{margin:0;max-width:62ch}
+.proj .part{margin-top:10px;font-size:14px;color:var(--muted)}
+.spec{display:flex;flex-direction:column;gap:10px;font-size:13px}
+.spec dt{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.spec dd{margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chips span{font:12px/1 var(--mono);padding:5px 7px;border-radius:5px;background:var(--chip)}
+
+/* stack layers */
+.layers{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.layer{display:grid;grid-template-columns:180px 1fr;gap:24px;padding:18px 22px;border-top:1px solid var(--line);align-items:center}
+.layer:first-child{border-top:0}
+.layer h3{font:600 15px/1.2 var(--body);letter-spacing:0}
+.layer h3 small{display:block;font:12px/1.4 var(--mono);color:var(--muted);margin-top:3px}
+
+/* timeline */
+.timeline{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.t{position:relative;padding:0 0 30px 28px}
+.t:last-child{padding-bottom:0}
+.t::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.t.now::before{background:var(--accent)}
+.t .d{font:13px/1.4 var(--mono);color:var(--muted)}
+.t h3{font:600 18px/1.3 var(--body);letter-spacing:0;margin-top:2px}
+.t p{margin:6px 0 0;color:var(--muted);max-width:64ch}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;border-top:1px solid var(--ink);padding-top:40px}
+.contact h2{font-size:clamp(34px,5.5vw,60px);font-weight:800;line-height:.98}
+.cl{display:flex;flex-direction:column;gap:0}
+.cl div{display:grid;grid-template-columns:90px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px;min-width:0}
+.cl div span:nth-child(2){overflow-wrap:anywhere;user-select:all}
+.copy{font:12px/1 var(--mono);background:none;border:1px solid var(--line);color:var(--ink);padding:6px 9px;border-radius:6px;cursor:pointer}
+.copy:hover{border-color:var(--accent)}
+.foot{font-size:13px;color:var(--muted)}
+
+@media (max-width:860px){
+  .hero,.feature,.contact{grid-template-columns:1fr}
+  .proj{grid-template-columns:1fr;gap:14px}
+  .layer{grid-template-columns:1fr;gap:10px}
+  .feature{padding:24px}
+}
+@media (max-width:440px){
+  .row{grid-template-columns:96px 1fr 34px}
+  .cl div{grid-template-columns:1fr auto}
+  .cl div span:first-child{grid-column:1/-1}
+}
+/* more projects */
+.more{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{display:flex;flex-direction:column;gap:10px;padding:22px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.card .k{font:500 12px/1.3 var(--mono);color:var(--accent)}
+.card h3{font-size:21px;font-weight:700;line-height:1.15}
+.card p{margin:0;font-size:15px}
+.card .chips{margin-top:auto;padding-top:6px}
+@media (max-width:440px){.more{grid-template-columns:1fr}}
+/* flutter table */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.tbl table{width:100%;border-collapse:collapse;min-width:640px;font-size:14px}
+.tbl th{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:14px 16px;border-bottom:1px solid var(--line)}
+.tbl td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{font-weight:600}
+.tbl td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+@media (prefers-reduced-motion:no-preference){
+  .fill{animation:grow .9s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes grow{from{transform:scaleX(.08);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}
+}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div>
+      <p class="label">Full-stack &amp; mobile engineer</p>
+      <h1>Gnana Sagar <span>Varada</span></h1>
+      <p class="role">I build patient apps, clinic back offices and AI tools that real healthcare teams use every day.</p>
+      <p class="intro">Most of my work is for Oliva Skin &amp; Hair Clinics: a Flutter patient app on Android and iOS, the FastAPI services behind it, and the diagnostics and analytics systems the clinics run on. I work across the whole stack, from camera-based skin analysis on the phone to Postgres, Kafka and AWS on the server.</p>
+      <div class="links">
+        <a class="btn primary" href="https://www.linkedin.com/in/gnana-sagar-varada-4a0286293" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/vgsagar1240" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <aside class="log" aria-label="Commits by project">
+      <header>
+        <span class="label">Ship log · Dec 2025 – Sep 2026</span>
+        <span class="total mono">326</span>
+      </header>
+      <div class="rows">
+        <div class="row"><span>Oliva app</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="n">193</span></div>
+        <div class="row"><span>OneOasis</span><div class="track"><div class="fill" style="width:50.3%"></div></div><span class="n">97</span></div>
+        <div class="row"><span>Diagnostics</span><div class="track"><div class="fill" style="width:11.4%"></div></div><span class="n">22</span></div>
+        <div class="row"><span>GrowthOS mobile</span><div class="track"><div class="fill" style="width:3.6%"></div></div><span class="n">7</span></div>
+        <div class="row"><span>DecoJewels</span><div class="track"><div class="fill" style="width:3.6%"></div></div><span class="n">7</span></div>
+      </div>
+      <footer>My commits per repository, counted from git history.</footer>
+    </aside>
+  </header>
+
+  <section id="work">
+    <div class="head"><h2>Selected work</h2><span class="label">13 projects · 3 clients · personal work</span></div>
+
+    <article class="feature">
+      <div>
+        <span class="client">Oliva Skin &amp; Hair Clinics · Lead developer</span>
+        <h3>Oliva patient app</h3>
+        <p>The production app for a dermatology clinic chain, live on Android and iOS. Patients book clinic visits, join video consultations with doctors, shop skincare, pay, and track their treatment with progress photos. An AI skin and hair analysis runs face detection on the phone, and a doctor reviews each result.</p>
+        <p>I wrote most of the codebase, 193 of its 224 commits, across the Flutter app and the FastAPI backend. The skin analysis is backed by a dataset of about 13,500 labelled images covering 10 conditions, from acne and pigmentation to pores and wrinkles.</p>
+        <ul class="features">
+          <li>Zenoti booking</li><li>Jitsi video consults</li><li>Shopify shop</li><li>Razorpay</li><li>Shiprocket</li><li>Loyalty &amp; referrals</li><li>OTP &amp; Google sign-in</li><li>Push notifications</li>
+        </ul>
+      </div>
+      <div class="metrics">
+        <div class="metric"><b>~91</b><span>Flutter screens</span></div>
+        <div class="metric"><b>40</b><span>API controllers</span></div>
+        <div class="metric"><b>13.5k</b><span>training images</span></div>
+        <div class="metric"><b>10</b><span>skin conditions detected</span></div>
+        <div class="metric"><b>18</b><span>admin dashboard pages</span></div>
+        <div class="metric"><b>193</b><span>commits by me</span></div>
+      </div>
+    </article>
+
+    <div class="projects" style="margin-top:24px">
+
+      <article class="proj">
+        <div><h3>OneOasis</h3><div class="when">Aug 2026 – now</div></div>
+        <div>
+          <p>A revenue and operations suite for Oasis Fertility. It covers call-centre and CRM analytics (agent scorecards, funnels, month-to-date views and cohorts), doctor-referral tracking, annual operating plans, marketing spend and finance reconciliation.</p>
+          <p class="part">My part: 97 commits across the analytics and integration work on a six-service backend.</p>
+        </div>
+        <dl class="spec">
+          <div><dt>Client</dt><dd>Oasis Fertility</dd></div>
+          <div><dt>Stack</dt><dd class="chips"><span>React</span><span>TanStack</span><span>FastAPI ×6</span><span>Kafka</span><span>Celery</span><span>Postgres</span><span>Salesforce</span></dd></div>
+        </dl>
+      </article>
+
+      <article class="proj">
+        <div><h3>Oliva Diagnostics</h3><div class="when">May 2026 – Sep 2026</div></div>
+        <div>
+          <p>The backend and dashboard for Oliva's lab-test business. Patients book home sample collection by pincode, and the system tracks rescheduling, address changes, package balances and report downloads. It also produces monthly collection summaries and revenue reconciliation.</p>
+          <p class="part">My part: main developer. I built about 60 API endpoints, integrated the lab partners, and moved Zoho CRM feedback into Zykrr.</p>
+        </div>
+        <dl class="spec">
+          <div><dt>Client</dt><dd>Oliva Skin &amp; Hair Clinics</dd></div>
+          <div><dt>Stack</dt><dd class="chips"><span>FastAPI</span><span>SQL Server</span><span>pandas</span><span>Zoho</span><span>AWS EC2</span><span>React</span></dd></div>
+        </dl>
+      </article>
+
+      <article class="proj">
+        <div><h3>Invoice AI</h3><div class="when">Jun 2026 – Jul 2026</div></div>
+        <div>
+          <p>An invoice analyser for Indian businesses. You upload a PDF, image or Word file and it extracts the invoice number, vendor, GSTIN, date and GST amounts. A random-forest model scores each invoice for fraud risk from 0 to 100 and flags duplicates. You can also ask questions about your spending in plain English.</p>
+          <p class="part">My part: sole developer. The README reports ~97% field-extraction accuracy and ~89% fraud-model accuracy, backed by 34 tests.</p>
+        </div>
+        <dl class="spec">
+          <div><dt>Type</dt><dd>Own product</dd></div>
+          <div><dt>Stack</dt><dd class="chips"><span>FastAPI</span><span>EasyOCR</span><span>scikit-learn</span><span>FAISS</span><span>Gemini</span><span>Supabase</span><span>React</span></dd></div>
+        </dl>
+      </article>
+
+      <article class="proj">
+        <div><h3>GrowthOS mobile</h3><div class="when">Aug 2026</div></div>
+        <div>
+          <p>A Flutter app for clinic staff and clinicians on the GrowthOS revenue platform, covering appointments, clients, checkout, forms and messaging. Data is stored offline in an encrypted local database. A backend-for-frontend service shapes the platform's APIs for mobile.</p>
+          <p class="part">My part: built the app and the BFF, with 77 Flutter tests, 69 API tests and a CI check that keeps the app in step with the OpenAPI contract.</p>
+        </div>
+        <dl class="spec">
+          <div><dt>Client</dt><dd>Oliva · GrowthOS</dd></div>
+          <div><dt>Stack</dt><dd class="chips"><span>Flutter</span><span>Riverpod</span><span>Drift</span><span>FastAPI BFF</span><span>Redis</span><span>GitHub Actions</span></dd></div>
+        </dl>
+      </article>
+
+      <article class="proj">
+        <div><h3>DecoJewels staff app</h3><div class="when">Jan 2026 – Jun 2026</div></div>
+        <div>
+          <p>A mobile tool for a jewellery business's floor staff. Staff scan a barcode or QR code to look up a product and its price, build an order, and create delivery challans with saved drafts and label printing.</p>
+          <p class="part">My part: main developer on the Flutter app (about 30 screens) and its Postgres-backed API.</p>
+        </div>
+        <dl class="spec">
+          <div><dt>Client</dt><dd>Delhi Jewel</dd></div>
+          <div><dt>Stack</dt><dd class="chips"><span>Flutter</span><span>mobile_scanner</span><span>FastAPI</span><span>Postgres</span><span>AWS EC2</span></dd></div>
+        </dl>
+      </article>
+
+      <article class="proj">
+        <div><h3>Oliva admin dashboard</h3><div class="when">Jun 2026 – Aug 2026</div></div>
+        <div>
+          <p>The web back office for the patient app. Staff manage users, appointments, doctors and their schedules, centres, orders, payments, loyalty, banners and notifications. They also review AI skin analyses and export reports.</p>
+          <p class="part">My part: project owner, built with a teammate.</p>
+        </div>
+        <dl class="spec">
+          <div><dt>Client</dt><dd>Oliva Skin &amp; Hair Clinics</dd></div>
+          <div><dt>Stack</dt><dd class="chips"><span>React 19</span><span>Tailwind</span><span>Zustand</span><span>FastAPI</span><span>JWT</span><span>Postgres</span></dd></div>
+        </dl>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="flutter">
+    <div class="head"><h2>Flutter apps</h2><span class="label">5 apps · Dart</span></div>
+    <div class="tbl"><table>
+      <thead><tr><th>App</th><th>Platforms</th><th>Size</th><th>Highlights</th></tr></thead>
+      <tbody>
+        <tr><td>Oliva patient app</td><td>Android · iOS</td><td class="num">~91 screens</td><td>Camera skin analysis with ML Kit, Jitsi video, Razorpay, FCM push, in-app updates</td></tr>
+        <tr><td>GrowthOS mobile</td><td>Android · iOS</td><td class="num">9 feature areas</td><td>Riverpod, go_router, encrypted Drift storage, 77 widget and unit tests</td></tr>
+        <tr><td>Voxi agent app</td><td>Android · iOS</td><td class="num">55 Dart files</td><td>Riverpod, Dio, go_router, live WhatsApp inbox for support agents</td></tr>
+        <tr><td>DecoJewels staff app</td><td>Android</td><td class="num">~30 screens</td><td>Barcode and QR scanning, typeahead search, challan drafts, label printing</td></tr>
+        <tr><td>My Fitness Plan</td><td>Android · iOS</td><td class="num">7 screens</td><td>Firebase, step counter through the health package, fl_chart, AI coach</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="more">
+    <div class="head"><h2>More projects</h2><span class="label">Built and contributed</span></div>
+    <div class="more">
+      <article class="card"><span class="k">Oliva · web platform</span><h3>GrowthOS</h3><p>A revenue platform for clinics. It covers marketing attribution with Bayesian media-mix models, a single customer view, CRM lead pipelines and an ad-budget agent that waits for human approval. Live at growos.olivaclinic.com.</p><div class="chips"><span>React 19</span><span>TanStack</span><span>FastAPI ×7</span><span>Kafka</span><span>Weaviate</span><span>OpenAI</span></div></article>
+      <article class="card"><span class="k">Oliva · WhatsApp SaaS</span><h3>Voxi WhatsApp</h3><p>A multi-tenant WhatsApp Business platform with a team inbox, campaigns, a visual chatbot builder, AI bots with a knowledge base, ticketing and analytics. It runs bots for three businesses and has a Flutter app for agents.</p><div class="chips"><span>FastAPI</span><span>React</span><span>Redis Streams</span><span>RabbitMQ</span><span>AWS ECS</span><span>WhatsApp Cloud API</span></div></article>
+      <article class="card"><span class="k">Oliva · automation</span><h3>Agent report mailer</h3><p>Turns the call-centre Power BI export into daily performance mail: one per agent with their rank, one per team for managers, and a full report for leadership. The tables are styled to match Power BI and render in Gmail and Outlook.</p><div class="chips"><span>Python</span><span>openpyxl</span><span>MSG91</span><span>Windows Task Scheduler</span></div></article>
+      <article class="card"><span class="k">Oliva · data</span><h3>Lead pipeline rebuild</h3><p>Rebuilt Oliva's lead reporting in PostgreSQL from Zoho CRM exports, Ameyo call data and Zenoti tables. It includes a funnel, stage matrices and monthly reports, and reconciles to production lead counts.</p><div class="chips"><span>PostgreSQL</span><span>SQL</span><span>Zoho CRM</span><span>Ameyo</span><span>Zenoti</span></div></article>
+      <article class="card"><span class="k">DecoJewel · AI</span><h3>Sofa stylist</h3><p>Customers upload a photo of their room and see a luxury sofa in their choice of fabric placed into it, in about 30 seconds, using AI image generation.</p><div class="chips"><span>TanStack Start</span><span>Cloudflare Workers</span><span>gpt-image-1</span><span>sharp</span><span>Postgres</span></div></article>
+      <article class="card"><span class="k">Personal · mobile</span><h3>My Fitness Plan</h3><p>A fitness and nutrition tracker with workouts, meals, a step counter, progress charts and an AI coach.</p><div class="chips"><span>Flutter</span><span>Firebase</span><span>Cloud Functions</span><span>Claude</span><span>Gemini</span><span>fl_chart</span></div></article>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="head"><h2>How I build</h2><span class="label">Phone to database</span></div>
+    <div class="layers">
+      <div class="layer"><h3>Mobile<small>Android · iOS</small></h3><div class="chips"><span>Flutter</span><span>Dart</span><span>Riverpod</span><span>go_router</span><span>Drift</span><span>ML Kit</span><span>Firebase FCM</span></div></div>
+      <div class="layer"><h3>Web<small>dashboards · admin</small></h3><div class="chips"><span>React</span><span>TypeScript</span><span>TanStack</span><span>Vite</span><span>Tailwind</span><span>Recharts</span></div></div>
+      <div class="layer"><h3>APIs<small>services</small></h3><div class="chips"><span>Python</span><span>FastAPI</span><span>SQLAlchemy</span><span>Alembic</span><span>WebSockets</span><span>JWT / OTP</span></div></div>
+      <div class="layer"><h3>Data<small>storage · events</small></h3><div class="chips"><span>PostgreSQL</span><span>SQL Server</span><span>Supabase</span><span>Redis</span><span>Kafka</span><span>Celery</span></div></div>
+      <div class="layer"><h3>AI &amp; ML<small>models · LLMs</small></h3><div class="chips"><span>OpenCV</span><span>MediaPipe</span><span>scikit-learn</span><span>EasyOCR</span><span>FAISS RAG</span><span>OpenAI</span><span>Gemini</span><span>Claude</span></div></div>
+      <div class="layer"><h3>Platforms<small>integrations · infra</small></h3><div class="chips"><span>Zenoti</span><span>Zoho</span><span>Salesforce</span><span>Shopify</span><span>Razorpay</span><span>AWS</span><span>Docker</span><span>Render</span></div></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="head"><h2>Experience</h2><span class="label">From commit history</span></div>
+    <div class="timeline">
+      <div class="t now"><div class="d">Aug 2026 – now</div><h3>OneOasis analytics platform · Oasis Fertility</h3><p>Analytics and integration work on a microservice platform built on Kafka.</p></div>
+      <div class="t"><div class="d">May 2026 – Sep 2026</div><h3>Oliva Diagnostics · lead developer</h3><p>Home-collection booking, lab-partner integrations, reporting and reconciliation on AWS.</p></div>
+      <div class="t"><div class="d">Dec 2025 – Aug 2026</div><h3>Oliva patient app · lead developer</h3><p>Built the production Android and iOS app with AI skin analysis, video consults and commerce. Also shipped the DecoJewels staff app for a client in this period.</p></div>
+    </div>
+  </section>
+
+  <footer class="contact" id="contact">
+    <h2>Let's build something people use.</h2>
+    <div>
+      <div class="cl">
+        <div><span class="label">Email</span><span id="email">sagarvgs007@gmail.com</span><button class="copy" id="copy-email" type="button" data-copy="sagarvgs007@gmail.com">Copy</button></div>
+        <div><span class="label">LinkedIn</span><span><a href="https://www.linkedin.com/in/gnana-sagar-varada-4a0286293" target="_blank" rel="noopener">gnana-sagar-varada</a></span><span></span></div>
+        <div><span class="label">GitHub</span><span><a href="https://github.com/vgsagar1240" target="_blank" rel="noopener">vgsagar1240</a></span><span></span></div>
+      </div>
+      <p class="foot">India · open to full-stack and mobile roles</p>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=b.getAttribute('data-copy');
+    function done(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1600);}
+    function fallback(){var s=document.getElementById('email');var r=document.createRange();r.selectNodeContents(s);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);b.textContent='Selected';}
+    try{navigator.clipboard.writeText(t).then(done,fallback);}catch(e){fallback();}
+  });
+});
+</script>
+
+</body>
+</html>
